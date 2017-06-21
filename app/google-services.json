@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1097230559258",
+    "firebase_url": "https://wheelomain.firebaseio.com",
+    "project_id": "wheelomain",
+    "storage_bucket": "wheelomain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097230559258:android:2799962fd3c29a71",
+        "android_client_info": {
+          "package_name": "com.motowala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097230559258-45ie3v9amc4mfg0r5gnlmh1ecd8bc0lt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.motowala",
+            "certificate_hash": "c9a344b4bc9651f05e7759c2bf71ab09a2cfb5ac"
+          }
+        },
+        {
+          "client_id": "1097230559258-a55kv3gfp0mqs870b1gmcjlpfs3umfsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVfiSRs9JCtubDCW97r85XW3rgnhhH8yY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097230559258-a55kv3gfp0mqs870b1gmcjlpfs3umfsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

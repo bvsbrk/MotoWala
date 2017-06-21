@@ -34,7 +34,6 @@ public class SplashScreen extends AppCompatActivity {
                             startActivity(new Intent(SplashScreen.this, CustomerLoggedIn.class));
                             break;
                         case "garager":
-
                             break;
                         default:
                             if (isValidated) {

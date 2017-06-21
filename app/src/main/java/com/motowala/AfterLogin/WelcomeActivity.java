@@ -193,7 +193,7 @@ public class WelcomeActivity extends AppCompatActivity {
             // TODO: 17-06-2017 Send customer object data to firebase depending on usertype
             WriteUserSignUp signUp = new WriteUserSignUp(this, customer);
             editor = preferences.edit();
-            editor.putBoolean("processFinished", true);
+            editor.putString("processFinished", "customer");
             editor.apply();
         }
     }
