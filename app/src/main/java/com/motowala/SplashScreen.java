@@ -55,3 +55,5 @@ public class SplashScreen extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 }
+// TODO: 21-06-2017 add permission check for first time here and for second time at WelcomeActivity
+// TODO: Last fragment place

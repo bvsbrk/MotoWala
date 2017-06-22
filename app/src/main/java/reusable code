@@ -1,0 +1,82 @@
+
+
+
+This code is for keeping tab layout:
+
+The xml should contain these
+
+
+<android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="#96ffffff"
+            app:theme="@style/TabLayoutTheme"
+             />
+
+
+             Above inside an app bar layout
+
+             Below is the view pager
+
+             <android.support.v4.view.ViewPager
+                     android:id="@+id/viewPager"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+     ViewPager viewPager;
+        private SectionsPagerAdapter viewPagerAdapter;
+        TabLayout tabLayout;
+
+     viewPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+            viewPager = (ViewPager) findViewById(R.id.viewPager);
+            viewPager.setAdapter(viewPagerAdapter);
+
+
+
+     tabLayout=(TabLayout)findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(viewPager);
+
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new TabFragment1();
+                case 1:
+                    return new TabFragment2();
+                case 2:
+                    return new TabFragment3();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0: {
+                    return "HOME";
+                }
+                case 1: {
+                    return "SERVICES";
+                }
+                case 2: {
+                    return "SERVICE 3";
+                }
+            }
+            return null;
+        }
+    }

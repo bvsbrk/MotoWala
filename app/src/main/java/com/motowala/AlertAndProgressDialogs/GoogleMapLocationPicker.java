@@ -137,7 +137,7 @@ public class GoogleMapLocationPicker extends DialogFragment implements OnMapRead
 
     @Override
     public void onMapClick(LatLng latLng) {
-
+        selectFromMapButton.setText("SELECT THIS LOCATION");
         googleMap.clear();
         /*
         *  When user clicks on the map the currentLocation object gets updated
