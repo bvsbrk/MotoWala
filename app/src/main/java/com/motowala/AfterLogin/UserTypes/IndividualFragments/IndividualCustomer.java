@@ -5,12 +5,14 @@ package com.motowala.AfterLogin.UserTypes.IndividualFragments;
  * It is created for Wheelo
  */
 
+import java.util.ArrayList;
+
 public class IndividualCustomer {
     public String name="not provided";
     public String email="not provided";
     public String mobile="not provided";           // Required to get this
     public String userToken="not provided";
-    public String userCar="not provided";         // Required to get this
+    public ArrayList<String> userCar=new ArrayList<>();         // Required to get this
     public String host="not provided";
     public double latitude=0;            // Required to get this
     public double longitude=0;           // Required to get this

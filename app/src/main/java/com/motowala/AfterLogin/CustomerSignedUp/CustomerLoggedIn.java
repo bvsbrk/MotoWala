@@ -25,19 +25,19 @@ import com.motowala.R;
 import java.lang.reflect.Field;
 
 public class CustomerLoggedIn extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView navigationView;
     int exitCount = 0;
     Typeface FONT_CHASING_HEARTS,FONT_HEADING;
     TextView todayText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_logged_in);
         todayText=(TextView)findViewById(R.id.todayText);
+
 
         FONT_CHASING_HEARTS = Typeface.createFromAsset(getAssets(),"fonts/chasing_hearts.ttf");
         FONT_HEADING=Typeface.createFromAsset(getAssets(),"fonts/headings.ttf");
@@ -47,6 +47,7 @@ public class CustomerLoggedIn extends AppCompatActivity
 
         navigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
         disableBottomNavItemShift(navigationView);
+        navigationView.setOnNavigationItemSelectedListener(this);
 
 
 
@@ -116,23 +117,34 @@ public class CustomerLoggedIn extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * Handle both navigation drawer and bottom navigation item clicks here
+     */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
+        if (id == R.id.nav_add_a_car) {
 
-        if (id == R.id.nav_your_orders) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_garages) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_buy_spares) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_pay_emi) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_rent_a_car) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_help) {
+
+        } else if (id==R.id.bottom_home) {
+
+        } else if (id==R.id.bottom_offers) {
+
+        } else if (id==R.id.bottom_history) {
+
+        } else if (id==R.id.bottom_profile) {
 
         }
 
@@ -165,5 +177,6 @@ public class CustomerLoggedIn extends AppCompatActivity
             Log.e("BNVHelper", "Unable to change value of shift mode", e);
         }
     }
+
 
 }

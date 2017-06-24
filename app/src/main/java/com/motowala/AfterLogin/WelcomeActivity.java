@@ -148,7 +148,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void setCar(TextView tv) {
-        tv.setText(customer.userCar);
+        tv.setText(customer.userCar.get(0));
     }
 
     public void setEmail(TextView tv) {
@@ -177,7 +177,7 @@ public class WelcomeActivity extends AppCompatActivity {
         } else if (fragIdentifierCount == 1) {
             List<String> details = frag2.getSelectedOptions(this);
             if (details.size() == 2 && customer.userType.equals(getString(R.string.individual_customer))) {
-                customer.userCar = details.get(0);
+                customer.userCar.add(details.get(0));
                 customer.mobile = details.get(1);
                 transaction = manager.beginTransaction();
                 transaction.addToBackStack(null);
