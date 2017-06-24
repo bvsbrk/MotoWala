@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by bk on 23-06-2017.
+ * Created by bk on 24-06-2017.
  * It is created for Wheelo
  */
 
-public class Profile extends Fragment {
+public class RentCar extends Fragment {
     View layout;
     @Nullable
     @Override
