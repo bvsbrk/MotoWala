@@ -58,7 +58,13 @@
         <activity
             android:name=".AfterLogin.CustomerSignedUp.CustomerLoggedIn"
             android:label="@string/title_activity_user_logged_in"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".AfterLogin.CustomerSignedUp.CustomerChatActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.motowala.AfterLogin.CustomerSignedUp.CustomerLoggedIn" />
+        </activity>
+        <activity android:name=".AfterLogin.CustomerSignedUp.ServiceHistoryTabs"></activity>
     </application>
 
 </manifest>

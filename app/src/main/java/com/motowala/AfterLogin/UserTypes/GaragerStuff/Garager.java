@@ -1,4 +1,4 @@
-package com.motowala.AfterLogin.UserTypes.GaragerFragments;
+package com.motowala.AfterLogin.UserTypes.GaragerStuff;
 
 /**
  * Created by bk on 15-06-2017.

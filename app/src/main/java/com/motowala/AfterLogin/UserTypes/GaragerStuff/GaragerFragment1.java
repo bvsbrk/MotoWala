@@ -1,4 +1,4 @@
-package com.motowala.AfterLogin.UserTypes.GaragerFragments;
+package com.motowala.AfterLogin.UserTypes.GaragerStuff;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

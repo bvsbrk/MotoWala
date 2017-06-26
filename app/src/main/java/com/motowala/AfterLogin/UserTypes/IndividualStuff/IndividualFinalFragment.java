@@ -1,4 +1,4 @@
-package com.motowala.AfterLogin.UserTypes.IndividualFragments;
+package com.motowala.AfterLogin.UserTypes.IndividualStuff;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.motowala.AfterLogin.WelcomeActivity;
-import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 import com.motowala.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;

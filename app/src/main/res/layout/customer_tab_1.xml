@@ -3,11 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SERVICE 1"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="DESCRIPTIONS"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

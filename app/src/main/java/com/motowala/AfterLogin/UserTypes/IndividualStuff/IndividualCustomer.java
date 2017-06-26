@@ -1,4 +1,4 @@
-package com.motowala.AfterLogin.UserTypes.IndividualFragments;
+package com.motowala.AfterLogin.UserTypes.IndividualStuff;
 
 /*
  * Created by bk on 15-06-2017.

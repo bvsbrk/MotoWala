@@ -1,6 +1,6 @@
 package com.motowala.AfterLogin.CustomerSignedUp;
 
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -8,6 +8,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,38 +19,67 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.AddCar;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.BuySpares;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Garages;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Help;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.History;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Home;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.NavProfile;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Offers;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.PayEmi;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.RentCar;
 import com.motowala.R;
 
 import java.lang.reflect.Field;
 
 public class CustomerLoggedIn extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,BottomNavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView navigationView;
     int exitCount = 0;
-    Typeface FONT_CHASING_HEARTS,FONT_HEADING;
-    TextView todayText;
+
+    AddCar navAddCar;
+    BuySpares navBuySpares;
+    Garages navGarages;
+    Help navHelp;
+    History navHistory;
+    Home navHome;
+    Offers navOffers;
+    PayEmi navPayEmi;
+    NavProfile navProfile;
+    RentCar navRentCar;
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_logged_in);
-        todayText=(TextView)findViewById(R.id.todayText);
+
+        navAddCar = new AddCar();
+        navBuySpares = new BuySpares();
+        navGarages = new Garages();
+        navHelp = new Help();
+        navHistory = new History();
+        navHome = new Home();
+        navOffers = new Offers();
+        navPayEmi = new PayEmi();
+        navProfile = new NavProfile();
+        navRentCar = new RentCar();
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags,navHome);
+        fragmentTransaction.commit();
 
 
-        FONT_CHASING_HEARTS = Typeface.createFromAsset(getAssets(),"fonts/chasing_hearts.ttf");
-        FONT_HEADING=Typeface.createFromAsset(getAssets(),"fonts/headings.ttf");
-        todayText.setTypeface(FONT_CHASING_HEARTS);
-        ((TextView)findViewById(R.id.choose_service)).setTypeface(FONT_HEADING);
-
-
-        navigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         disableBottomNavItemShift(navigationView);
         navigationView.setOnNavigationItemSelectedListener(this);
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,7 +95,7 @@ public class CustomerLoggedIn extends AppCompatActivity
                         .setAction("CHAT WITH US !!", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                // TODO: 22-06-2017 Replace with chat
+                                startActivity(new Intent(CustomerLoggedIn.this,CustomerChatActivity.class));
                             }
                         }).show();
             }
@@ -138,13 +169,15 @@ public class CustomerLoggedIn extends AppCompatActivity
 
         } else if (id == R.id.nav_help) {
 
-        } else if (id==R.id.bottom_home) {
+        } else if (id == R.id.bottom_home) {
 
-        } else if (id==R.id.bottom_offers) {
+        } else if (id == R.id.bottom_offers) {
 
-        } else if (id==R.id.bottom_history) {
-
-        } else if (id==R.id.bottom_profile) {
+        } else if (id == R.id.bottom_history) {
+            fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.replace_with_cust_nav_frags,navHistory);
+            fragmentTransaction.commit();
+        } else if (id == R.id.bottom_profile) {
 
         }
 

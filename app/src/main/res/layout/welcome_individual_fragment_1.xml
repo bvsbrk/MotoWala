@@ -111,7 +111,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/carBrands"
-                                    android:background="@drawable/simple_stroke"
                                     app:ms_dropdown_max_height="200dp"
                                     app:ms_arrow_tint="@color/colorPrimaryDark"
                                     app:ms_text_color="@color/colorPrimary"/>

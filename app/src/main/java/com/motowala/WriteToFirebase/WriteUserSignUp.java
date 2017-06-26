@@ -1,12 +1,11 @@
 package com.motowala.WriteToFirebase;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.motowala.AfterLogin.UserTypes.IndividualFragments.IndividualCustomer;
+import com.motowala.AfterLogin.UserTypes.IndividualStuff.IndividualCustomer;
 import com.motowala.AfterLogin.WelcomeActivity;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 
