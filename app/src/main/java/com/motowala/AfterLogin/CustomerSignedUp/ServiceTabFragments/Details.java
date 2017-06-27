@@ -1,4 +1,4 @@
-package com.motowala.AfterLogin.CustomerSignedUp.TabFragments;
+package com.motowala.AfterLogin.CustomerSignedUp.ServiceTabFragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +14,7 @@ import com.motowala.R;
  * It is created for Wheelo
  */
 
-public class TabFragment3 extends Fragment {
+public class Details extends Fragment {
     View layout;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class TabFragment3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layout=inflater.inflate(R.layout.customer_tab_3,container,false);
+        layout=inflater.inflate(R.layout.customer_details_tab,container,false);
         return layout;
     }
 }

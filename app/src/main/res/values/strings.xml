@@ -1,24 +1,30 @@
 <resources>
-    <string name="app_name">MotoWala</string>
-    <string name="signup_text">Sign up or Log in with</string>
-    <string name="facebook_app_id">1681587812150441</string>
-    <string name="fb_login_protocol_scheme">fb1681587812150441</string>
-    <string name="shared_prefs_login_validator">shared_prefs_login</string>
-    <string name="location_discalaimer">We use your location to identify you quickly.We don\'t share your location with anyone</string>
-    <string name="garage_owner">GARAGE OWNER</string>
-    <string name="individual_customer">CUSTOMER</string>
-    <string name="title_activity_user_logged_in">UserLoggedIn</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="location_dialog_button_text">TAP ON THE MAP TO SELECT YOUR LOCATION</string>
-    <string name="is_user_logged_in">isLoggedIn</string>
-    <string name="is_process_finished">processFinished</string>
-    <string name="user_host">host</string>
-    <string name="user_email">userEmail</string>
-    <string name="user_db">userDb</string>
-    <string name="user_name">userName</string>
-    <string name="user_image_uri">imageUri</string>
+	<string name="app_name">MotoWala</string>
+	<string name="signup_text">Sign up or Log in with</string>
+	<string name="facebook_app_id">1681587812150441</string>
+	<string name="fb_login_protocol_scheme">fb1681587812150441</string>
+	<string name="shared_prefs_login_validator">shared_prefs_login</string>
+	<string name="location_discalaimer">We use your location to identify you quickly.We don\'t share your location with anyone</string>
+	<string name="garage_owner">GARAGE OWNER</string>
+	<string name="individual_customer">CUSTOMER</string>
+	<string name="title_activity_user_logged_in">UserLoggedIn</string>
+	
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	
+	<string name="action_settings">Settings</string>
+	<string name="location_dialog_button_text">TAP ON THE MAP TO SELECT YOUR LOCATION</string>
+	<string name="is_user_logged_in">isLoggedIn</string>
+	<string name="is_process_finished">processFinished</string>
+	<string name="user_host">host</string>
+	<string name="user_email">userEmail</string>
+	<string name="user_db">userDb</string>
+	<string name="user_name">userName</string>
+	<string name="user_image_uri">imageUri</string>
+	
+	<string name="customer_progress_status_started">initiated</string>
+	<string name="customer_progress_status_processed">processing</string>
+	<string name="customer_progress_status_finished">finished</string>
+	<string name="customer_progress_status_error">error</string>
+	
 </resources>

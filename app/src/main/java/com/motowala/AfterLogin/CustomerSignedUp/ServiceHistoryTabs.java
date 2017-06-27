@@ -9,10 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
-import com.motowala.AfterLogin.CustomerSignedUp.TabFragments.TabFragment1;
-import com.motowala.AfterLogin.CustomerSignedUp.TabFragments.TabFragment2;
-import com.motowala.AfterLogin.CustomerSignedUp.TabFragments.TabFragment3;
+import com.motowala.AfterLogin.CustomerSignedUp.ServiceTabFragments.Details;
+import com.motowala.AfterLogin.CustomerSignedUp.ServiceTabFragments.Invoice;
+import com.motowala.AfterLogin.CustomerSignedUp.ServiceTabFragments.Progress;
 import com.motowala.R;
 
 public class ServiceHistoryTabs extends AppCompatActivity {
@@ -26,14 +25,9 @@ public class ServiceHistoryTabs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_history_tabs);
-        toolbar=(Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        collapsingToolbarLayout=(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-        tabLayout = (TabLayout) findViewById(R.id.temp_tab);
-        viewPager = (ViewPager) findViewById(R.id.temp_view_pager);
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
+        initializeTablayoutAndToolbarAndViewpager();
     }
+
 
     class PageAdapter extends FragmentPagerAdapter {
 
@@ -43,13 +37,13 @@ public class ServiceHistoryTabs extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
-                    return new TabFragment1();
+                    return new Details();
                 case 1:
-                    return new TabFragment2();
+                    return new Progress();
                 default:
-                    return new TabFragment3();
+                    return new Invoice();
             }
         }
 
@@ -69,5 +63,13 @@ public class ServiceHistoryTabs extends AppCompatActivity {
                     return "Invoice";
             }
         }
+    }
+    private void initializeTablayoutAndToolbarAndViewpager() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.temp_tab);
+        viewPager = (ViewPager) findViewById(R.id.temp_view_pager);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
     }
 }

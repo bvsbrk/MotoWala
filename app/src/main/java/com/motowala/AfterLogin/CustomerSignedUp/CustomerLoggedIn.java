@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -20,17 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.AddCar;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.BuySpares;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Garages;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Help;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.History;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Home;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.NavProfile;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.Offers;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.PayEmi;
-import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.RentCar;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.*;
 import com.motowala.R;
 
 import java.lang.reflect.Field;
@@ -60,20 +51,11 @@ public class CustomerLoggedIn extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_logged_in);
 
-        navAddCar = new AddCar();
-        navBuySpares = new BuySpares();
-        navGarages = new Garages();
-        navHelp = new Help();
-        navHistory = new History();
-        navHome = new Home();
-        navOffers = new Offers();
-        navPayEmi = new PayEmi();
-        navProfile = new NavProfile();
-        navRentCar = new RentCar();
+        initializeAllNavItems();
 
         fragmentManager = getSupportFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags,navHome);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, navHome);
         fragmentTransaction.commit();
 
 
@@ -95,7 +77,7 @@ public class CustomerLoggedIn extends AppCompatActivity
                         .setAction("CHAT WITH US !!", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(CustomerLoggedIn.this,CustomerChatActivity.class));
+                                startActivity(new Intent(CustomerLoggedIn.this, CustomerChatActivity.class));
                             }
                         }).show();
             }
@@ -110,6 +92,7 @@ public class CustomerLoggedIn extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -135,16 +118,12 @@ public class CustomerLoggedIn extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // TODO: 27-06-2017 Create a settings activity for customer
+        int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -158,32 +137,35 @@ public class CustomerLoggedIn extends AppCompatActivity
 
         int id = item.getItemId();
         if (id == R.id.nav_add_a_car) {
-
+            commitFragTransaction(navAddCar);
         } else if (id == R.id.nav_garages) {
-
+            commitFragTransaction(navGarages);
         } else if (id == R.id.nav_buy_spares) {
-
+            commitFragTransaction(navBuySpares);
         } else if (id == R.id.nav_pay_emi) {
-
+            commitFragTransaction(navPayEmi);
         } else if (id == R.id.nav_rent_a_car) {
-
+            commitFragTransaction(navRentCar);
         } else if (id == R.id.nav_help) {
-
+            commitFragTransaction(navHelp);
         } else if (id == R.id.bottom_home) {
-
+            commitFragTransaction(navHome);
         } else if (id == R.id.bottom_offers) {
-
+            commitFragTransaction(navOffers);
         } else if (id == R.id.bottom_history) {
-            fragmentTransaction=fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.replace_with_cust_nav_frags,navHistory);
-            fragmentTransaction.commit();
+            commitFragTransaction(navHistory);
         } else if (id == R.id.bottom_profile) {
-
+            commitFragTransaction(navProfile);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void commitFragTransaction(Fragment fragToReplace) {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, fragToReplace).commit();
     }
 
     /*
@@ -198,10 +180,7 @@ public class CustomerLoggedIn extends AppCompatActivity
             shiftingMode.setAccessible(false);
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                //noinspection RestrictedApi
                 item.setShiftingMode(false);
-                // set once again checked value, so view will be updated
-                //noinspection RestrictedApi
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {
@@ -211,5 +190,16 @@ public class CustomerLoggedIn extends AppCompatActivity
         }
     }
 
-
+    private void initializeAllNavItems() {
+        navAddCar = new AddCar();
+        navBuySpares = new BuySpares();
+        navGarages = new Garages();
+        navHelp = new Help();
+        navHistory = new History();
+        navHome = new Home();
+        navOffers = new Offers();
+        navPayEmi = new PayEmi();
+        navProfile = new NavProfile();
+        navRentCar = new RentCar();
+    }
 }
