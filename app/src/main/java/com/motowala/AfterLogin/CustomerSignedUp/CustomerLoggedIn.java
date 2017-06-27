@@ -1,6 +1,7 @@
 package com.motowala.AfterLogin.CustomerSignedUp;
 
 import android.content.Intent;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -23,6 +24,9 @@ import android.view.View;
 import android.widget.Toast;
 import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.*;
 import com.motowala.R;
+import com.nightonke.boommenu.BoomButtons.HamButton;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.Util;
 
 import java.lang.reflect.Field;
 
@@ -45,53 +49,21 @@ public class CustomerLoggedIn extends AppCompatActivity
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    BoomMenuButton boomMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_logged_in);
 
-        initializeAllNavItems();
+        initializeAllNavClasses();
+        setUpFragManagersAndTransactions();
+        initializeAllBasicComponents();
+        initializeFabAndBoomButtons();
 
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, navHome);
-        fragmentTransaction.commit();
-
-
-        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        disableBottomNavItemShift(navigationView);
-        navigationView.setOnNavigationItemSelectedListener(this);
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Wheelo");
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "WE ARE ONLINE", Snackbar.LENGTH_LONG)
-                        .setAction("CHAT WITH US !!", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                startActivity(new Intent(CustomerLoggedIn.this, CustomerChatActivity.class));
-                            }
-                        }).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
+
+
 
 
     @Override
@@ -111,7 +83,6 @@ public class CustomerLoggedIn extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.customer_logged_in, menu);
         return true;
     }
@@ -137,7 +108,7 @@ public class CustomerLoggedIn extends AppCompatActivity
 
         int id = item.getItemId();
         if (id == R.id.nav_add_a_car) {
-            commitFragTransaction(navAddCar);
+
         } else if (id == R.id.nav_garages) {
             commitFragTransaction(navGarages);
         } else if (id == R.id.nav_buy_spares) {
@@ -190,7 +161,7 @@ public class CustomerLoggedIn extends AppCompatActivity
         }
     }
 
-    private void initializeAllNavItems() {
+    private void initializeAllNavClasses() {
         navAddCar = new AddCar();
         navBuySpares = new BuySpares();
         navGarages = new Garages();
@@ -201,5 +172,54 @@ public class CustomerLoggedIn extends AppCompatActivity
         navPayEmi = new PayEmi();
         navProfile = new NavProfile();
         navRentCar = new RentCar();
+    }
+
+    private void setUpFragManagersAndTransactions() {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, navHome);
+        fragmentTransaction.commit();
+    }
+
+    private void initializeAllBasicComponents() {
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        disableBottomNavItemShift(navigationView);
+        navigationView.setOnNavigationItemSelectedListener(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Wheelo");
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initializeFabAndBoomButtons() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "WE ARE ONLINE", Snackbar.LENGTH_LONG)
+                        .setAction("CHAT WITH US !!", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(CustomerLoggedIn.this, CustomerChatActivity.class));
+                            }
+                        }).show();
+            }
+        });
+        boomMenuButton=(BoomMenuButton)findViewById(R.id.boom_button);
+        for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
+            HamButton.Builder builder = new HamButton.Builder()
+                    .normalImageRes(R.drawable.full_circle);
+
+            boomMenuButton.addBuilder(builder);
+        }
     }
 }

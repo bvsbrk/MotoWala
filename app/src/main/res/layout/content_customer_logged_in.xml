@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.motowala.AfterLogin.CustomerSignedUp.CustomerLoggedIn"
-    tools:showIn="@layout/app_bar_customer_logged_in">
-
-
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/replace_with_cust_nav_frags"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="7dp"
-            app:elevation="10dp" />
-    </android.support.design.widget.CoordinatorLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:elevation="10dp"
-        app:menu="@menu/customer_bottom_nav_menu" />
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior"
+	tools:context="com.motowala.AfterLogin.CustomerSignedUp.CustomerLoggedIn"
+	tools:showIn="@layout/app_bar_customer_logged_in">
+	
+	
+	<android.support.design.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+		
+		<LinearLayout
+			android:id="@+id/replace_with_cust_nav_frags"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="30dp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:orientation="horizontal">
+		
+		</LinearLayout>
+		
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/fab"
+			android:layout_width="15dp"
+			android:layout_height="15dp"
+			android:layout_gravity="bottom|start"
+			android:layout_margin="7dp"
+			app:elevation="10dp" />
+		
+		<com.nightonke.boommenu.BoomMenuButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|end"
+			android:id="@+id/boom_button"
+			app:bmb_buttonEnum="ham"
+			app:bmb_piecePlaceEnum="piecePlace_ham_4"
+			app:bmb_buttonPlaceEnum="buttonPlace_ham_4"
+			app:bmb_normalColor="@color/colorPrimaryDark"
+			app:bmb_rippleEffect="@bool/default_bmb_autoBoom"
+			app:bmb_showDuration="@integer/default_bmb_boomEnum"/>
+	</android.support.design.widget.CoordinatorLayout>
+	
+	<android.support.design.widget.BottomNavigationView
+		android:id="@+id/bottom_navigation"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom"
+		android:background="?android:attr/windowBackground"
+		app:elevation="10dp"
+		app:menu="@menu/customer_bottom_nav_menu" />
 </LinearLayout>
-
