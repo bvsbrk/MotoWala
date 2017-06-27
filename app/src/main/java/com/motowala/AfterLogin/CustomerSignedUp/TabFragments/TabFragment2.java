@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.motowala.R;
 
 /**
@@ -16,15 +15,19 @@ import com.motowala.R;
 
 public class TabFragment2 extends Fragment {
     View layout;
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layout=inflater.inflate(R.layout.customer_tab_2,container,false);
+        layout = inflater.inflate(R.layout.customer_tab_2, container, false);
         return layout;
     }
 }

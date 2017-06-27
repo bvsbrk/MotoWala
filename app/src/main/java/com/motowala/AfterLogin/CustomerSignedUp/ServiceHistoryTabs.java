@@ -1,6 +1,7 @@
 package com.motowala.AfterLogin.CustomerSignedUp;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,13 +20,15 @@ public class ServiceHistoryTabs extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     Toolbar toolbar;
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_history_tabs);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        collapsingToolbarLayout=(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
         tabLayout = (TabLayout) findViewById(R.id.temp_tab);
         viewPager = (ViewPager) findViewById(R.id.temp_view_pager);
         tabLayout.setupWithViewPager(viewPager);
