@@ -1,0 +1,59 @@
+{
+  "Subjects": {
+    "DIGITAL COMMUNICATION SYSTEMS": {
+      "CREDITS": 4,
+      "NUM": 1,
+      "COURSE CODE": "ECE 4001",
+      "FACULTY": {
+        "FIRST PREFERENCE": "",
+        "SECOND PREFERENCE": ""
+      }
+    },
+    "DIGITAL SIGNAL PROCESSING": {
+      "CREDITS": 4,
+      "NUM": 2,
+      "COURSE CODE": "ECE 2006",
+      "FACULTY": {
+        "FIRST PREFERENCE": "",
+        "SECOND PREFERENCE": ""
+      }
+    },
+    "COA": {
+      "CREDITS": 3,
+      "NUM": 3,
+      "COURSE CODE": "ECE 3004",
+      "FACULTY": {
+        "FIRST PREFERENCE": "karthikeyan a",
+        "SECOND PREFERENCE": "chitra p"
+      }
+    },
+    "ANTENNAS AND WAVE PROPAGATION": {
+      "CREDITS": 3,
+      "NUM": 4,
+      "COURSE CODE": "ECE 3010",
+      "FACULTY": {
+        "FIRST PREFERENCE": "",
+        "SECOND PREFERENCE": ""
+      }
+    },
+    "MICRO CONTROLLER AND APPLICATIONS": {
+      "CREDITS": 4,
+      "NUM": 5,
+      "COURSE CODE": "ECE 3003",
+      "FACULTY": {
+        "FIRST PREFERENCE": "",
+        "SECOND PREFERENCE": ""
+      }
+    },
+    "SOFT SKILLS": {
+      "CREDITS": 2,
+      "NUM": 6,
+      "COURSE CODE": "STS 3001",
+      "FACULTY": {
+        "FIRST PREFERENCE": "",
+        "SECOND PREFERENCE": ""
+      }
+    }
+  },
+  "TOTAL CREDITS": 20
+}

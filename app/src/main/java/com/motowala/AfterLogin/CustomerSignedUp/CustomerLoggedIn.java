@@ -1,8 +1,9 @@
 package com.motowala.AfterLogin.CustomerSignedUp;
 
 import android.content.Intent;
-import android.graphics.PointF;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -21,12 +22,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.*;
 import com.motowala.R;
-import com.nightonke.boommenu.BoomButtons.HamButton;
-import com.nightonke.boommenu.BoomMenuButton;
-import com.nightonke.boommenu.Util;
+import com.squareup.picasso.Picasso;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.lang.reflect.Field;
 
@@ -41,15 +42,16 @@ public class CustomerLoggedIn extends AppCompatActivity
     Garages navGarages;
     Help navHelp;
     History navHistory;
-    Home navHome;
     Offers navOffers;
     PayEmi navPayEmi;
     NavProfile navProfile;
     RentCar navRentCar;
+    Home navHome;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    BoomMenuButton boomMenuButton;
+    String imageUri, userName, userEmail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +59,12 @@ public class CustomerLoggedIn extends AppCompatActivity
         setContentView(R.layout.activity_customer_logged_in);
 
         initializeAllNavClasses();
-        setUpFragManagersAndTransactions();
+        setUpFragManager();
         initializeAllBasicComponents();
-        initializeFabAndBoomButtons();
-
+        initializeFab();
+        getFromSharedPrefs();
+        setDefaults();
     }
-
-
 
 
     @Override
@@ -104,11 +105,11 @@ public class CustomerLoggedIn extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
         if (id == R.id.nav_add_a_car) {
-
+            commitFragTransaction(navAddCar);
         } else if (id == R.id.nav_garages) {
             commitFragTransaction(navGarages);
         } else if (id == R.id.nav_buy_spares) {
@@ -119,14 +120,14 @@ public class CustomerLoggedIn extends AppCompatActivity
             commitFragTransaction(navRentCar);
         } else if (id == R.id.nav_help) {
             commitFragTransaction(navHelp);
-        } else if (id == R.id.bottom_home) {
-            commitFragTransaction(navHome);
         } else if (id == R.id.bottom_offers) {
             commitFragTransaction(navOffers);
         } else if (id == R.id.bottom_history) {
             commitFragTransaction(navHistory);
         } else if (id == R.id.bottom_profile) {
             commitFragTransaction(navProfile);
+        } else if (id == R.id.bottom_home) {
+            commitFragTransaction(navHome);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -167,18 +168,16 @@ public class CustomerLoggedIn extends AppCompatActivity
         navGarages = new Garages();
         navHelp = new Help();
         navHistory = new History();
-        navHome = new Home();
         navOffers = new Offers();
         navPayEmi = new PayEmi();
         navProfile = new NavProfile();
         navRentCar = new RentCar();
+        navHome = new Home();
     }
 
-    private void setUpFragManagersAndTransactions() {
+    private void setUpFragManager() {
         fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, navHome);
-        fragmentTransaction.commit();
+        fragmentManager.beginTransaction().replace(R.id.replace_with_cust_nav_frags, new Home()).commit();
     }
 
     private void initializeAllBasicComponents() {
@@ -200,7 +199,7 @@ public class CustomerLoggedIn extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void initializeFabAndBoomButtons() {
+    private void initializeFab() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,12 +213,41 @@ public class CustomerLoggedIn extends AppCompatActivity
                         }).show();
             }
         });
-        boomMenuButton=(BoomMenuButton)findViewById(R.id.boom_button);
-        for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
-            HamButton.Builder builder = new HamButton.Builder()
-                    .normalImageRes(R.drawable.full_circle);
+    }
 
-            boomMenuButton.addBuilder(builder);
-        }
+    public void handleHistoryRecView(int position) {
+        /*
+         *  Take the recycler view position from HistoryAdapter and pass it to its
+         *  respectieve fragment to perform action there
+         *  Fragment is the administrator of actions done by rec view
+         */
+        navHistory.showServiceHistoryTabs(position);
+    }
+
+    public void handleOffersRecView(int position) {
+        /*
+         *  Take the recycler view position from OffersAdapter and pass it to its
+         *  respectieve fragment to perform action there
+         *  Fragment is the administrator of actions done by rec view
+         */
+        navOffers.showOfferDetails(position);
+    }
+
+    public void setDefaults() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        TextView userNameTv = (TextView) hView.findViewById(R.id.customer_nav_user_name);
+        TextView userEmailTv = (TextView) hView.findViewById(R.id.customer_nav_user_email);
+        CircleImageView userImageView = (CircleImageView) hView.findViewById(R.id.navUserImage);
+        userEmailTv.setText(userEmail);
+        userNameTv.setText(userName);
+        Picasso.with(this).load(imageUri).into(userImageView);
+    }
+
+    public void getFromSharedPrefs() {
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs_login_validator), MODE_PRIVATE);
+        userName = preferences.getString(getString(R.string.user_name), "");
+        userEmail = preferences.getString(getString(R.string.user_email), "");
+        imageUri = preferences.getString(getString(R.string.user_image_uri), "");
     }
 }

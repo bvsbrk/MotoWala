@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
+	
+	<item
         android:id="@+id/bottom_home"
         android:icon="@drawable/bottom_nav_home_icon"
         android:title="HOME" />
-
     <item
         android:id="@+id/bottom_offers"
         android:icon="@drawable/bottom_nav_offer_icon"

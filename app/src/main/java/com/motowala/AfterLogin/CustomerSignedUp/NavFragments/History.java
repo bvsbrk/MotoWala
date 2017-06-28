@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.HistoryRecView.HistoryAdapter;
+import com.motowala.AfterLogin.CustomerSignedUp.NavFragments.HistoryRecView.HistoryData;
 import com.motowala.AfterLogin.CustomerSignedUp.ServiceHistoryTabs;
 import com.motowala.R;
 
@@ -19,7 +23,8 @@ import com.motowala.R;
 
 public class History extends Fragment {
     View layout;
-    TextView tv;
+    RecyclerView historyRecView;
+    TextView filterOrders;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,15 +34,28 @@ public class History extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-        super.onActivityCreated(savedInstanceState);
-        tv=(TextView)layout.findViewById(R.id.temp_tv);
-        tv.setOnClickListener(new View.OnClickListener() {
+        setUpHistoryRecView();
+        filterOrders = (TextView) layout.findViewById(R.id.service_history_filter_orders);
+        filterOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ServiceHistoryTabs.class));
-
+                Toast.makeText(getActivity(), "Comming Soon..", Toast.LENGTH_SHORT).show();
+                // TODO: 28-06-2017 Add filter orders here
             }
         });
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    private void setUpHistoryRecView() {
+        historyRecView = (RecyclerView) layout.findViewById(R.id.service_history_recview);
+        HistoryData data = new HistoryData(getActivity());
+        HistoryAdapter adapter = new HistoryAdapter(getActivity(), data.getList());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        historyRecView.setLayoutManager(manager);
+        historyRecView.setAdapter(adapter);
+    }
+
+    public void showServiceHistoryTabs(int position) {
+        startActivity(new Intent(getActivity(), ServiceHistoryTabs.class));
     }
 }

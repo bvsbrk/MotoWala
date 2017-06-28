@@ -1,58 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/choose_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="Choose a service"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/todayText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Today I'd like a" />
-
-    <android.support.v7.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        app:columnCount="2"
-        app:rowCount="2">
-
-        <Button
-            android:layout_margin="5dp"
-            android:background="@drawable/submit_bg"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <Button
-            android:layout_margin="5dp"
-            android:background="@drawable/submit_bg"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <Button
-            android:layout_margin="5dp"
-            android:background="@drawable/submit_bg"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <Button
-            android:layout_margin="5dp"
-            android:background="@drawable/submit_bg"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-    </android.support.v7.widget.GridLayout>
-
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<TextView
+		android:id="@+id/choose_service"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:padding="20dp"
+		android:text="Your Active Services"
+		android:textColor="@android:color/black"
+		android:textSize="20sp"
+		/>
+	
+	<LinearLayout
+		android:id="@+id/replace_with_internal_home_frag"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+		
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/active_services_rec_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+	
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_margin="10dp"
+		android:background="@drawable/simple_stroke"
+		android:drawablePadding="20dp"
+		android:drawableStart="@drawable/plus_circle"
+		android:gravity="center"
+		android:paddingEnd="20dp"
+		android:paddingStart="20dp"
+		android:text="NEW SERVICE"
+		android:textColor="@android:color/white"
+		android:textStyle="bold"/>
 </LinearLayout>

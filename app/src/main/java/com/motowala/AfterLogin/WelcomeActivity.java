@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,14 +28,12 @@ import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 import com.motowala.R;
 import com.motowala.WriteToFirebase.WriteUserSignUp;
 import com.squareup.picasso.Picasso;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class WelcomeActivity extends AppCompatActivity {

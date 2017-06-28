@@ -6,10 +6,10 @@
 	android:orientation="horizontal">
 	
 	<com.github.vipulasri.timelineview.TimelineView
+		android:id="@+id/time_line_view"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:padding="10dp"
-		android:id="@+id/time_line_view"
 		app:line="@color/colorPrimary"
 		app:linePadding="4.5dp"
 		app:lineSize="3dp"
@@ -21,6 +21,8 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
 		android:layout_margin="10dp"
+		android:clickable="true"
+		android:foreground="?android:attr/selectableItemBackground"
 		app:contentPadding="15dp">
 		
 		<LinearLayout
@@ -31,18 +33,18 @@
 			android:orientation="vertical">
 			
 			<TextView
+				android:id="@+id/heading_tv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/heading_tv"
 				android:layout_margin="3dp"
 				android:text="Some Text"
 				android:textSize="12sp" />
 			
 			<TextView
+				android:id="@+id/content_tv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="3dp"
-				android:id="@+id/content_tv"
 				android:gravity="left"
 				android:text="Order Initiated"
 				android:textColor="@android:color/black" />
