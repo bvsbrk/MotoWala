@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import com.motowala.R;
+import com.motowala.SetDefaults;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by bk on 24-06-2017.
@@ -15,6 +18,10 @@ import com.motowala.R;
 
 public class Settings extends Fragment {
     View layout;
+    CircleImageView imageView;
+    TextView userName;
+    TextView userEmail;
+    SetDefaults defaults;
 
     @Nullable
     @Override
@@ -26,5 +33,16 @@ public class Settings extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        defaults = new SetDefaults(getActivity());
+        imageView = (CircleImageView) layout.findViewById(R.id.settings_image_view);
+        userName = (TextView) layout.findViewById(R.id.settings_user_name);
+        userEmail = (TextView) layout.findViewById(R.id.settings_email_id);
+        setDefaults();
+    }
+
+    private void setDefaults() {
+        defaults.setUserImageIcon(imageView);
+        defaults.setUserName(userName);
+        defaults.setEmail(userEmail);
     }
 }

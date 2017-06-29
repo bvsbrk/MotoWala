@@ -47,6 +47,7 @@ public class CustomerLoggedIn extends AppCompatActivity
     NavProfile navProfile;
     RentCar navRentCar;
     Home navHome;
+    Settings navSettings;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -91,9 +92,9 @@ public class CustomerLoggedIn extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        // TODO: 27-06-2017 Create a settings activity for customer
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            performFragTransaction(navSettings);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -109,25 +110,27 @@ public class CustomerLoggedIn extends AppCompatActivity
 
         int id = item.getItemId();
         if (id == R.id.nav_add_a_car) {
-            commitFragTransaction(navAddCar);
+            performFragTransaction(navAddCar);
         } else if (id == R.id.nav_garages) {
-            commitFragTransaction(navGarages);
+            performFragTransaction(navGarages);
         } else if (id == R.id.nav_buy_spares) {
-            commitFragTransaction(navBuySpares);
+            performFragTransaction(navBuySpares);
         } else if (id == R.id.nav_pay_emi) {
-            commitFragTransaction(navPayEmi);
+            performFragTransaction(navPayEmi);
         } else if (id == R.id.nav_rent_a_car) {
-            commitFragTransaction(navRentCar);
+            performFragTransaction(navRentCar);
         } else if (id == R.id.nav_help) {
-            commitFragTransaction(navHelp);
+            performFragTransaction(navHelp);
         } else if (id == R.id.bottom_offers) {
-            commitFragTransaction(navOffers);
+            performFragTransaction(navOffers);
         } else if (id == R.id.bottom_history) {
-            commitFragTransaction(navHistory);
+            performFragTransaction(navHistory);
         } else if (id == R.id.bottom_profile) {
-            commitFragTransaction(navProfile);
+            performFragTransaction(navProfile);
         } else if (id == R.id.bottom_home) {
-            commitFragTransaction(navHome);
+            performFragTransaction(navHome);
+        } else if (id == R.id.nav_settings) {
+            performFragTransaction(navSettings);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,14 +138,12 @@ public class CustomerLoggedIn extends AppCompatActivity
         return true;
     }
 
-    private void commitFragTransaction(Fragment fragToReplace) {
+    private void performFragTransaction(Fragment fragToReplace) {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.replace_with_cust_nav_frags, fragToReplace).commit();
     }
 
-    /*
-     *  Disable Shift of bottom nav view
-     */
+
     public void disableBottomNavItemShift(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
@@ -173,6 +174,7 @@ public class CustomerLoggedIn extends AppCompatActivity
         navProfile = new NavProfile();
         navRentCar = new RentCar();
         navHome = new Home();
+        navSettings = new Settings();
     }
 
     private void setUpFragManager() {
