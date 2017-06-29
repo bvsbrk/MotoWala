@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_add_a_car"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="ADD A CAR" />
-        <item
-            android:id="@+id/nav_garages"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="GARAGES" />
-        <item
-            android:id="@+id/nav_buy_spares"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="BUY SPARES" />
-        <item
-            android:id="@+id/nav_pay_emi"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="PAY EMI" />
-        <item
-            android:id="@+id/nav_rent_a_car"
-            android:icon="@drawable/ic_menu_share"
-            android:title="RENT A CAR" />
-        <item
-            android:id="@+id/nav_help"
-            android:icon="@drawable/ic_menu_send"
-            android:title="HELP" />
-    </group>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+	
+	<group android:checkableBehavior="single">
+		<item
+			android:id="@+id/nav_add_a_car"
+			android:icon="@drawable/add_car"
+			android:title="ADD NEW CAR"/>
+		<item
+			android:id="@+id/nav_garages"
+			android:icon="@drawable/ic_menu_gallery"
+			android:title="GARAGES"/>
+		<item
+			android:id="@+id/nav_buy_spares"
+			android:icon="@drawable/buy_spares"
+			android:title="BUY SPARES"/>
+		<item
+			android:id="@+id/nav_pay_emi"
+			android:icon="@drawable/pay_emi"
+			android:title="PAY EMI"/>
+		<item
+			android:id="@+id/nav_rent_a_car"
+			android:icon="@drawable/ic_menu_share"
+			android:title="RENT A CAR"/>
+		<item
+			android:id="@+id/nav_help"
+			android:icon="@drawable/help"
+			android:title="HELP"/>
+		<item
+			android:id="@+id/nav_settings"
+			android:icon="@drawable/settings"
+			android:title="SETTINGS"
+			/>
+	</group>
 
 
 </menu>

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,15 +19,13 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.motowala.AfterLogin.WelcomeActivity;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 import com.motowala.R;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by bk on 15-06-2017.
@@ -120,7 +117,8 @@ public class IndividualFragment1 extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.dismiss();
-                Toast.makeText(getActivity(), "Error occured\nPlease try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Retrying...", Toast.LENGTH_SHORT).show();
+                setCarModels(carBrand);
             }
         });
         queue.add(request);
@@ -150,6 +148,7 @@ public class IndividualFragment1 extends Fragment {
             String carCategory=carCategoryNames.get(categoryNumber);
             list.add(0,carModel+" "+carCategory);
             list.add(1,mobile);
+            list.add(2, carModel);
             return list;
         }
         return list;

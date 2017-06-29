@@ -1,7 +1,9 @@
 package com.motowala.AfterLogin;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,11 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.motowala.AfterLogin.CustomerSignedUp.CustomerLoggedIn;
 import com.motowala.AfterLogin.UserTypes.GaragerStuff.Garager;
 import com.motowala.AfterLogin.UserTypes.IndividualStuff.IndividualCustomer;
@@ -25,14 +22,13 @@ import com.motowala.AfterLogin.UserTypes.IndividualStuff.IndividualFragment1;
 import com.motowala.AfterLogin.WelcomeFragments.WelcomeFragment1;
 import com.motowala.AlertAndProgressDialogs.GoogleMapLocationPicker;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
+import com.motowala.CustomerDatabases.CustomerDatabase;
+import com.motowala.GetCars.GetCars;
 import com.motowala.R;
-import com.motowala.WriteToFirebase.WriteUserSignUp;
+import com.motowala.WriteToFirebase.WriteToFirebase;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
-import org.json.JSONArray;
-import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
     IndividualFinalFragment frag3;
     FragmentManager manager;
     String imageUri;
+    String carModelForDb;
     Button nextButton;
     int fragIdentifierCount = 0;
     MyProgressDialog dialog;
@@ -51,6 +48,8 @@ public class WelcomeActivity extends AppCompatActivity {
     Garager garageOwner;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    CustomerDatabase database;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,32 +99,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public List<String> getCarTitles() {
-        dialog.show();
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        final List<String> list = new ArrayList<>();
-        JsonArrayRequest carBrands = new JsonArrayRequest("http://wheelo.co/cars_drop_down/get_cars.php", new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        list.add(response.getString(i));
-                    }
-                    queue.stop();
-                    dialog.dismiss();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                queue.stop();
-                dialog.dismiss();
-                Toast.makeText(WelcomeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(carBrands);
-        return list;
+        return (new GetCars()).getCarTitles(dialog, this);
     }
 
     public void setImageIcon(CircleImageView imageView) {
@@ -173,9 +147,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         } else if (fragIdentifierCount == 1) {
             List<String> details = frag2.getSelectedOptions(this);
-            if (details.size() == 2 && customer.userType.equals(getString(R.string.individual_customer))) {
+            if (details.size() == 3 && customer.userType.equals(getString(R.string.individual_customer))) {
                 customer.userCar.add(details.get(0));
                 customer.mobile = details.get(1);
+                carModelForDb = details.get(2);
                 transaction = manager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.replacable_container, frag3);
@@ -188,12 +163,21 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         } else {
             // TODO: 17-06-2017 Send customer object data to firebase depending on usertype
-            WriteUserSignUp signUp = new WriteUserSignUp(this, customer);
+            WriteToFirebase signUp = new WriteToFirebase(this);
+            signUp.writeUserSignUp(customer);
             editor = preferences.edit();
             editor.putString("processFinished", "customer");
-            editor.apply();
+            editor.putString(getString(R.string.user_car), customer.userCar.get(0));
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    /*Put user cars to database and get number of cars everything in a new thread*/
+                    putUserCarsIntoDatabase();
+                }
+            })).start();
         }
     }
+
 
     private void merge() {
         garageOwner.garagerName = customer.name;
@@ -222,6 +206,17 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void userSignedUp() {
         startActivity(new Intent(this, CustomerLoggedIn.class));
+    }
+
+    private void putUserCarsIntoDatabase() {
+        database = new CustomerDatabase(WelcomeActivity.this, getString(R.string.user_db), 1, 1, getString(R.string.user_car_table));
+        db = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(getString(R.string.user_car_table_car_column), carModelForDb);
+        long numOfRows = db.insert(getString(R.string.user_car_table), null, contentValues);
+        editor.putInt(getString(R.string.customer_car_count), (int) (numOfRows - 1));
+        editor.apply();
+        db.close();
     }
 }
 

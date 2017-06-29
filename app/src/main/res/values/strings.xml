@@ -21,10 +21,14 @@
 	<string name="user_db">userDb</string>
 	<string name="user_name">userName</string>
 	<string name="user_image_uri">imageUri</string>
+	<string name="customer_car_count">noOfCars</string>
+	<string name="user_car">userCar</string>
 	
 	<string name="customer_progress_status_started">initiated</string>
 	<string name="customer_progress_status_processed">processing</string>
 	<string name="customer_progress_status_finished">finished</string>
 	<string name="customer_progress_status_error">error</string>
-	
+	<string name="user_car_table">userCars</string>
+	<string name="user_car_table_car_column">cars</string>
+
 </resources>

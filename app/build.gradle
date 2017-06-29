@@ -48,7 +48,6 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.github.vipulasri:timelineview:1.0.5'
-    compile 'com.miguelcatalan:materialsearchview:1.4.0'
     testCompile 'junit:junit:4.12'
 }
 
