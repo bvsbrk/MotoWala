@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -70,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString(getString(R.string.user_db), userId);
         editor.putString(getString(R.string.user_name),profileName);
         editor.putString(getString(R.string.user_image_uri),imageUri);
+        editor.putBoolean(getString(R.string.customer_notification_state), true);
         editor.apply();
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);

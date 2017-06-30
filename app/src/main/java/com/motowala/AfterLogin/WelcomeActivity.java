@@ -168,6 +168,7 @@ public class WelcomeActivity extends AppCompatActivity {
             editor = preferences.edit();
             editor.putString("processFinished", "customer");
             editor.putString(getString(R.string.user_car), customer.userCar.get(0));
+            editor.putString(getString(R.string.user_mobile), customer.mobile);
             (new Thread(new Runnable() {
                 @Override
                 public void run() {

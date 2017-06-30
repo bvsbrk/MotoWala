@@ -49,6 +49,7 @@ public class CustomerLoggedIn extends AppCompatActivity
     Home navHome;
     Settings navSettings;
 
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     String imageUri, userName, userEmail;
@@ -66,7 +67,6 @@ public class CustomerLoggedIn extends AppCompatActivity
         getFromSharedPrefs();
         setDefaults();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -252,4 +252,5 @@ public class CustomerLoggedIn extends AppCompatActivity
         userEmail = preferences.getString(getString(R.string.user_email), "");
         imageUri = preferences.getString(getString(R.string.user_image_uri), "");
     }
+
 }

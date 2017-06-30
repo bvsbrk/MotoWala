@@ -30,5 +30,7 @@
 	<string name="customer_progress_status_error">error</string>
 	<string name="user_car_table">userCars</string>
 	<string name="user_car_table_car_column">cars</string>
+	<string name="customer_notification_state">showNotifications</string>
+	<string name="user_mobile">userMobile</string>
 
 </resources>

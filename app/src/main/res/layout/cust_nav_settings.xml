@@ -59,6 +59,7 @@
 					/>
 				
 				<TextView
+					android:id="@+id/settings_edit_profile_tv"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:clickable="true"
@@ -93,7 +94,7 @@
 						/>
 					
 					<Switch
-						android:id="@+id/settings_switch"
+						android:id="@+id/settings_notifications_switch"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"

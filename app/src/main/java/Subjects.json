@@ -2,58 +2,95 @@
   "Subjects": {
     "DIGITAL COMMUNICATION SYSTEMS": {
       "CREDITS": 4,
+      "TYPE": "PC",
       "NUM": 1,
       "COURSE CODE": "ECE 4001",
       "FACULTY": {
-        "FIRST PREFERENCE": "",
+        "FIRST PREFERENCE": "VELMURUGAN T IN A1 OR A2",
         "SECOND PREFERENCE": ""
-      }
+      },
+      "LAB FACULTY": ""
     },
     "DIGITAL SIGNAL PROCESSING": {
       "CREDITS": 4,
+      "TYPE": "PC",
       "NUM": 2,
       "COURSE CODE": "ECE 2006",
       "FACULTY": {
-        "FIRST PREFERENCE": "",
-        "SECOND PREFERENCE": ""
+        "FIRST PREFERENCE": "VALARMATI IN C1 OR C2",
+        "SECOND PREFERENCE": "YEPUGANTI KARUNA IN C1 OR C2"
       }
     },
     "COA": {
       "CREDITS": 3,
+      "TYPE": "PE",
       "NUM": 3,
       "COURSE CODE": "ECE 3004",
       "FACULTY": {
-        "FIRST PREFERENCE": "karthikeyan a",
-        "SECOND PREFERENCE": "chitra p"
+        "FIRST PREFERENCE": "CHITRA P IN B1",
+        "SECOND PREFERENCE": "ASHISH P IN B1 OR B2"
       }
     },
     "ANTENNAS AND WAVE PROPAGATION": {
       "CREDITS": 3,
+      "TYPE": "PE",
       "NUM": 4,
       "COURSE CODE": "ECE 3010",
       "FACULTY": {
-        "FIRST PREFERENCE": "",
-        "SECOND PREFERENCE": ""
+        "FIRST PREFERENCE": "RAJESHKUMAR V IN E1 OR E2",
+        "SECOND PREFERENCE": "YOGESH KUMAR CHOUKIKER IN E1 OR E2"
       }
     },
     "MICRO CONTROLLER AND APPLICATIONS": {
       "CREDITS": 4,
+      "TYPE": "PC",
       "NUM": 5,
       "COURSE CODE": "ECE 3003",
       "FACULTY": {
-        "FIRST PREFERENCE": "",
-        "SECOND PREFERENCE": ""
+        "FIRST PREFERENCE": "GERARDINE IMMACULATE MARY IN D1",
+        "SECOND PREFERENCE": "SUMIT KUMAR IN D1",
+        "THIRD PREFERENCE": "PADMINI TN IN D1 OR D2",
+        "RESTRICTED": "SUDHAKAR MS"
       }
     },
     "SOFT SKILLS": {
       "CREDITS": 2,
+      "TYPE": "UC",
       "NUM": 6,
       "COURSE CODE": "STS 3001",
       "FACULTY": {
         "FIRST PREFERENCE": "",
         "SECOND PREFERENCE": ""
       }
+    },
+    "ANALOG ELECTRONIC CIRCUITS": {
+      "CREDITS": 2,
+      "TYPE": "PC",
+      "NUM": 7,
+      "COURSE CODE": "ECE 2002",
+      "FACULTY": {
+        "FIRST PREFERENCE": "JASMINE PEMEENA IN B1 OR B2",
+        "SECOND PREFERENCE": "GOVARDHAN K IN B1 OR B2"
+      }
+    },
+    "PROBABILITY THEORY AND RANDOM PROCESSES": {
+      "CREDITS": 3,
+      "TYPE": "PC",
+      "NUM": 8,
+      "COURSE CODE": "ECE2005",
+      "FACULTY": {
+        "FIRST PREFERENCE": "SANKAR GANESH S"
+      }
+    },
+    "EXTRA CURRICULAR": {
+      "CREDITS": 2,
+      "TYPE": "UC",
+      "NUM": 9,
+      "COURSE CODE": "EXC1035",
+      "FACULTY": {
+        "FIRST PREFERENCE": "SANKAR GANESH S"
+      }
     }
   },
-  "TOTAL CREDITS": 20
+  "TOTAL CREDITS": 27
 }
