@@ -18,9 +18,17 @@ public class Config extends Application {
     public String customerNotificationState;
     public String userMobile;
     public SharedPreferences preferences;
+    public String customerChatTableName;
+    public String customerChatMessageColumn;
+    public String customerChatSentByCustomerColumn;
+    public String customerChatTimeColumn;
 
     public Config(Context context) {
         this.context = context;
+        this.customerChatTableName = "customerChat";
+        this.customerChatMessageColumn = "customerMessage";
+        this.customerChatTimeColumn = "sentOn";
+        this.customerChatSentByCustomerColumn = "isSentByCustomer";
         sharedPrefsName = context.getString(R.string.shared_prefs_login_validator);
         preferences = context.getSharedPreferences(sharedPrefsName, Context.MODE_PRIVATE);
         customerNotificationState = context.getString(R.string.customer_notification_state);
@@ -28,7 +36,7 @@ public class Config extends Application {
         carTablesName = context.getString(R.string.user_car_table);
         carsTableCarColumn = context.getString(R.string.user_car_table_car_column);
         databaseName = context.getString(R.string.user_db);
-        databaseNewVersion = 1;
+        databaseNewVersion = 3;
         databaseOldVersion = 1;
         this.userMobile = preferences.getString(context.getString(R.string.user_mobile), "");
     }

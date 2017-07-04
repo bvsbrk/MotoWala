@@ -8,8 +8,14 @@ package com.motowala.AfterLogin.CustomerSignedUp.CustomerChatRecview;
 public class ChatListItem {
 
     public String message;
-    public String time;
     public boolean sentByCustomer;
+    public String time;
+
+    public ChatListItem() {
+        /*
+         * This useless constructor is for firebase retreival
+         */
+    }
 
     public ChatListItem(String message, String time, boolean sentByCustomer) {
         this.message = message;

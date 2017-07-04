@@ -14,9 +14,9 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 import com.motowala.Config;
 import com.motowala.CustomerDatabases.CustomerDatabase;
+import com.motowala.FirebaseActivities.WriteToFirebase;
 import com.motowala.GetCars.GetCars;
 import com.motowala.R;
-import com.motowala.WriteToFirebase.WriteToFirebase;
 
 /**
  * Created by bk on 24-06-2017.
@@ -60,6 +60,7 @@ public class AddCar extends Fragment {
             public void onClick(View view) {
                 String selectedCarModel = carModels.getText().toString();
                 boolean isValidCar = performCheck(selectedCarModel);
+                // TODO: 04-07-2017 Selected Car model condition is not working as expected
                 if (isValidCar && !selectedCarModel.equals("CAR MODEL")) {
                     WriteToFirebase firebase = new WriteToFirebase(getActivity());
                     firebase.addNewCarToCustomer(carModels.getText().toString());
@@ -73,9 +74,8 @@ public class AddCar extends Fragment {
     private boolean performCheck(String selectedCar) {
         CustomerDatabase database = new CustomerDatabase(getActivity(),
                 config.databaseName,
-                config.databaseNewVersion,
-                config.databaseOldVersion,
-                config.carTablesName);
+                config.databaseNewVersion
+        );
         String[] cols = {config.carsTableCarColumn};
         String[] selArgs = {selectedCar};
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
@@ -84,6 +84,8 @@ public class AddCar extends Fragment {
                 config.carsTableCarColumn + "=?",
                 selArgs, null,
                 null, null);
-        return cursor.getCount() == 0;
+        boolean validity = cursor.getCount() == 0;
+        cursor.close();
+        return validity;
     }
 }

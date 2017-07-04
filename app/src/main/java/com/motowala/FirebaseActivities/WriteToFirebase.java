@@ -1,4 +1,4 @@
-package com.motowala.WriteToFirebase;
+package com.motowala.FirebaseActivities;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.motowala.AfterLogin.CustomerSignedUp.CustomerChatRecview.ChatListItem;
 import com.motowala.AfterLogin.UserTypes.IndividualStuff.IndividualCustomer;
 import com.motowala.AfterLogin.WelcomeActivity;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
@@ -35,12 +36,13 @@ public class WriteToFirebase {
         this.context = context;
         wheelo_main = FirebaseDatabase.getInstance();
         databaseReference = wheelo_main.getReference();
-        dialog = new MyProgressDialog(context, "Just a moment..", "Please wait..");
-        dialog.show();
     }
+
 
     public void writeUserSignUp(IndividualCustomer customer) {
         this.customer = customer;
+        dialog = new MyProgressDialog(context, "Just a moment..", "Please wait..");
+        dialog.show();
         final String thirdLevelChildUserToken = customer.userToken;
         databaseReference.child(firstLevelChild).child(secondLevelChild).child(thirdLevelChildUserToken).
                 setValue(customer, new DatabaseReference.CompletionListener() {
@@ -54,6 +56,8 @@ public class WriteToFirebase {
 
     public void addNewCarToCustomer(String car) {
         addThisNewCarToDatabase(car);
+        dialog = new MyProgressDialog(context, "Just a moment..", "Please wait..");
+        dialog.show();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
@@ -84,9 +88,8 @@ public class WriteToFirebase {
                 Config config = new Config(context);
                 CustomerDatabase database = new CustomerDatabase(context,
                         config.databaseName,
-                        config.databaseNewVersion,
-                        config.databaseOldVersion,
-                        config.carTablesName);
+                        config.databaseNewVersion
+                );
                 SQLiteDatabase db = database.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put(config.carsTableCarColumn, car);
@@ -96,4 +99,16 @@ public class WriteToFirebase {
             }
         })).start();
     }
+
+    public void updateCustomerChats(ChatListItem item, long numOfMsgs) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String thirdLevelChildUserId = user.getUid();
+        databaseReference.child(firstLevelChild)
+                .child(secondLevelChild)
+                .child(thirdLevelChildUserId)
+                .child("chats")
+                .child(numOfMsgs + "")
+                .setValue(item);
+    }
+
 }

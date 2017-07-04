@@ -23,9 +23,9 @@ import com.motowala.AfterLogin.WelcomeFragments.WelcomeFragment1;
 import com.motowala.AlertAndProgressDialogs.GoogleMapLocationPicker;
 import com.motowala.AlertAndProgressDialogs.MyProgressDialog;
 import com.motowala.CustomerDatabases.CustomerDatabase;
+import com.motowala.FirebaseActivities.WriteToFirebase;
 import com.motowala.GetCars.GetCars;
 import com.motowala.R;
-import com.motowala.WriteToFirebase.WriteToFirebase;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -210,7 +210,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void putUserCarsIntoDatabase() {
-        database = new CustomerDatabase(WelcomeActivity.this, getString(R.string.user_db), 1, 1, getString(R.string.user_car_table));
+        database = new CustomerDatabase(WelcomeActivity.this, getString(R.string.user_db), 1);
         db = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(getString(R.string.user_car_table_car_column), carModelForDb);

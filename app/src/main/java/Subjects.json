@@ -1,15 +1,24 @@
 {
   "Subjects": {
-    "DIGITAL COMMUNICATION SYSTEMS": {
-      "CREDITS": 4,
-      "TYPE": "PC",
-      "NUM": 1,
-      "COURSE CODE": "ECE 4001",
+    "SOFT SKILLS": {
+      "CREDITS": 2,
+      "TYPE": "UC",
+      "NUM": 6,
+      "COURSE CODE": "STS 3001",
       "FACULTY": {
-        "FIRST PREFERENCE": "VELMURUGAN T IN A1 OR A2",
-        "SECOND PREFERENCE": ""
-      },
-      "LAB FACULTY": ""
+        "FIRST PREFERENCE": "TT 302 ETHUNUS",
+        "SECOND PREFERENCE": "ETHUNUS F1 SJT 201 OR SJT 202"
+      }
+    },
+    "ANALOG ELECTRONIC CIRCUITS": {
+      "CREDITS": 2,
+      "TYPE": "PC",
+      "NUM": 7,
+      "COURSE CODE": "ECE 2002",
+      "FACULTY": {
+        "FIRST PREFERENCE": "JASMINE PEMEENA IN B1 OR B2",
+        "SECOND PREFERENCE": "GOVARDHAN K IN B1 OR B2"
+      }
     },
     "DIGITAL SIGNAL PROCESSING": {
       "CREDITS": 4,
@@ -19,6 +28,16 @@
       "FACULTY": {
         "FIRST PREFERENCE": "VALARMATI IN C1 OR C2",
         "SECOND PREFERENCE": "YEPUGANTI KARUNA IN C1 OR C2"
+      },
+      "LAB FACULTY": "L23+L24 ABHIJIT BHOWMICK OR L57+L58 VALARMATHI"
+    },
+    "PROBABILITY THEORY AND RANDOM PROCESSES": {
+      "CREDITS": 3,
+      "TYPE": "PC",
+      "NUM": 8,
+      "COURSE CODE": "ECE2005",
+      "FACULTY": {
+        "FIRST PREFERENCE": "SANKAR GANESH S"
       }
     },
     "COA": {
@@ -51,36 +70,20 @@
         "SECOND PREFERENCE": "SUMIT KUMAR IN D1",
         "THIRD PREFERENCE": "PADMINI TN IN D1 OR D2",
         "RESTRICTED": "SUDHAKAR MS"
-      }
+      },
+      "LAB FACULTY": "NEELAKANDAN IN L45+L46"
     },
-    "SOFT SKILLS": {
-      "CREDITS": 2,
-      "TYPE": "UC",
-      "NUM": 6,
-      "COURSE CODE": "STS 3001",
-      "FACULTY": {
-        "FIRST PREFERENCE": "",
-        "SECOND PREFERENCE": ""
-      }
-    },
-    "ANALOG ELECTRONIC CIRCUITS": {
-      "CREDITS": 2,
+    "DIGITAL COMMUNICATION SYSTEMS": {
+      "CREDITS": 4,
       "TYPE": "PC",
-      "NUM": 7,
-      "COURSE CODE": "ECE 2002",
+      "NUM": 1,
+      "COURSE CODE": "ECE 4001",
       "FACULTY": {
-        "FIRST PREFERENCE": "JASMINE PEMEENA IN B1 OR B2",
-        "SECOND PREFERENCE": "GOVARDHAN K IN B1 OR B2"
-      }
-    },
-    "PROBABILITY THEORY AND RANDOM PROCESSES": {
-      "CREDITS": 3,
-      "TYPE": "PC",
-      "NUM": 8,
-      "COURSE CODE": "ECE2005",
-      "FACULTY": {
-        "FIRST PREFERENCE": "SANKAR GANESH S"
-      }
+        "FIRST PREFERENCE": "VELMURUGAN T IN A1 OR A2",
+        "SECOND PREFERENCE": "NANDA KUMAR S"
+      },
+      "LAB FACULTY": "L33+L34 VELUMURUGAN T OR NANDA KUMAR IN L41+L42",
+      "PRIORITY": ""
     },
     "EXTRA CURRICULAR": {
       "CREDITS": 2,
@@ -88,9 +91,10 @@
       "NUM": 9,
       "COURSE CODE": "EXC1035",
       "FACULTY": {
-        "FIRST PREFERENCE": "SANKAR GANESH S"
+        "FIRST PREFERENCE": "ASSOCIATION FOR COMPUTING MACHINERY"
       }
     }
   },
-  "TOTAL CREDITS": 27
+  "TOTAL CREDITS": 26,
+  "FFCS PASSWORD": "Aa1@bcdebkkb"
 }
