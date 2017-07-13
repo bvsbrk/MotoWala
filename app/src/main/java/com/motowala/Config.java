@@ -22,13 +22,17 @@ public class Config extends Application {
     public String customerChatMessageColumn;
     public String customerChatSentByCustomerColumn;
     public String customerChatTimeColumn;
+    public String loggedInUserId;
+    public String loggedInUserName;
+    public String customerChatSupportNotifyingUrl;
 
     public Config(Context context) {
         this.context = context;
-        this.customerChatTableName = "customerChat";
-        this.customerChatMessageColumn = "customerMessage";
-        this.customerChatTimeColumn = "sentOn";
-        this.customerChatSentByCustomerColumn = "isSentByCustomer";
+        customerChatSupportNotifyingUrl = "";
+        customerChatTableName = "customerChat";
+        customerChatMessageColumn = "customerMessage";
+        customerChatTimeColumn = "sentOn";
+        customerChatSentByCustomerColumn = "isSentByCustomer";
         sharedPrefsName = context.getString(R.string.shared_prefs_login_validator);
         preferences = context.getSharedPreferences(sharedPrefsName, Context.MODE_PRIVATE);
         customerNotificationState = context.getString(R.string.customer_notification_state);
@@ -38,6 +42,8 @@ public class Config extends Application {
         databaseName = context.getString(R.string.user_db);
         databaseNewVersion = 3;
         databaseOldVersion = 1;
-        this.userMobile = preferences.getString(context.getString(R.string.user_mobile), "");
+        loggedInUserId = preferences.getString(context.getString(R.string.user_db), "");
+        userMobile = preferences.getString(context.getString(R.string.user_mobile), "");
+        loggedInUserName = preferences.getString(context.getString(R.string.user_name), "");
     }
 }

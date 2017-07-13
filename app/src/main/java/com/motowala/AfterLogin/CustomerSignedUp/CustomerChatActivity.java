@@ -11,6 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+import com.android.volley.*;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.motowala.AfterLogin.CustomerSignedUp.CustomerChatRecview.ChatAdapter;
 import com.motowala.AfterLogin.CustomerSignedUp.CustomerChatRecview.ChatData;
 import com.motowala.AfterLogin.CustomerSignedUp.CustomerChatRecview.ChatListItem;
@@ -20,6 +24,9 @@ import com.motowala.FirebaseActivities.FirebaseListeners;
 import com.motowala.FirebaseActivities.WriteToFirebase;
 import com.motowala.R;
 import com.motowala.SimpleDateSender;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerChatActivity extends AppCompatActivity {
 
@@ -39,8 +46,34 @@ public class CustomerChatActivity extends AppCompatActivity {
         config = new Config(this);
         setUpToolbar();
         setUpRecView();
+        notifySupportTeamAboutThisCustomer(config.loggedInUserId, config.loggedInUserName);
         chatListener = new FirebaseListeners(this);
         chatListener.updateCustomerChatRecview(adapter, chatRecView);
+    }
+
+    private void notifySupportTeamAboutThisCustomer(final String loggedInUserId, final String userName) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = config.customerChatSupportNotifyingUrl;
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(CustomerChatActivity.this, response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("userId", loggedInUserId);
+                map.put("userName", userName);
+                return map;
+            }
+        };
+        queue.add(request);
     }
 
     private void setUpRecView() {
@@ -83,7 +116,8 @@ public class CustomerChatActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     String time = (new SimpleDateSender("hh:mm a")).getTime();
-                    long numOfMsgs = storeMessageIntoDatabase(message, true + "", time);
+                    ChatListItem item = new ChatListItem(message, time, true);
+                    long numOfMsgs = storeMessageIntoDatabase(item);
                     addMessageToFirebase(message, true + "", time, numOfMsgs);
                 }
             }).start();
@@ -96,13 +130,13 @@ public class CustomerChatActivity extends AppCompatActivity {
         updateChats.updateCustomerChats(item, numOfMsgs);
     }
 
-    private long storeMessageIntoDatabase(String message, String sentByCustomer, String time) {
+    public long storeMessageIntoDatabase(ChatListItem item) {
         CustomerDatabase database = new CustomerDatabase(this, config.databaseName, config.databaseNewVersion);
         SQLiteDatabase db = database.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(config.customerChatMessageColumn, message);
-        values.put(config.customerChatSentByCustomerColumn, sentByCustomer);
-        values.put(config.customerChatTimeColumn, time);
+        values.put(config.customerChatMessageColumn, item.message);
+        values.put(config.customerChatSentByCustomerColumn, item.sentByCustomer + "");
+        values.put(config.customerChatTimeColumn, item.time);
         long numOfMessages = db.insert(config.customerChatTableName, null, values);
         db.close();
         return numOfMessages;
